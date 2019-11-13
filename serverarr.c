@@ -11,8 +11,8 @@
 
 int main() {
 	int ssid, cid, sid;
-	char str[100];
-	int msgbyte, a[5], n=5;
+	char str[3000];
+	int msgbyte, a[3000], n=3000;
 
 	
 	ssid = socket(AF_INET,SOCK_STREAM,0);
@@ -64,22 +64,22 @@ int main() {
 	start = clock();
 	bubbleSort(a, n);
 	end = clock();
-	cpu_time_used[0] = (((double) (end - start)) / CLOCKS_PER_SEC)* 1000;
+	cpu_time_used[0] = (((double) (end - start)) / CLOCKS_PER_SEC);
 
 	start = clock();
 	selectionSort(b, n);
 	end = clock();
-	cpu_time_used[1] = (((double) (end - start)) / CLOCKS_PER_SEC)* 1000;
+	cpu_time_used[1] = (((double) (end - start)) / CLOCKS_PER_SEC);
 
 	start = clock();
 	quickSort(c, 0, n - 1);
 	end = clock();
-	cpu_time_used[2] = (((double) (end - start)) / CLOCKS_PER_SEC)* 1000;
+	cpu_time_used[2] = (((double) (end - start)) / CLOCKS_PER_SEC);
 
 	start = clock();
 	mergeSort(d, 0, n - 1);
 	end = clock();
-	cpu_time_used[3] = (((double) (end - start)) / CLOCKS_PER_SEC)* 1000;
+	cpu_time_used[3] = (((double) (end - start)) / CLOCKS_PER_SEC);
 	
 //send
 	msgbyte=send(fd1, &a, sizeof(a), 0);

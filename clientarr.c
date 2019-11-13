@@ -5,11 +5,15 @@
 #include<arpa/inet.h>
 #include<unistd.h>
 #include<string.h>
+#include<time.h>
+#include"myheadSorting.h"
+
 int main() {
 
 	int csid, cid;
-	char str[100];
-	int msgbyte, a[5], i;
+	char str[3000];
+	int msgbyte, i;
+	int max=3000, n=3000, a[3000];
 	
 	csid=socket(AF_INET, SOCK_STREAM, 0);
 	if(csid == -1) {
@@ -37,20 +41,24 @@ int main() {
 	sadd.sin_family = AF_INET;
 	sadd.sin_port = htons(7000);
 	sadd.sin_addr.s_addr = inet_addr("127.0.0.1");
-	for(i=0; i<5; i++) {
-		printf("Enter %dth number\n",i);
-		scanf("%d", &a[i]);
+
+	
+
+	for(i=0; i<n; i++) {
+		
+		a[i] = rand() % 1000 + 1;
 	}
 
 	msgbyte = send(csid ,&a ,sizeof(a) ,0);
-
+	for(i=0 ;i<3000; i++)
+		printf("%d ", a[i]);
 
 // recieve	
 	struct sockaddr_in fadd;
 	int len = sizeof(fadd);
 	msgbyte = recv(csid, &a, sizeof(a), 0);
-	for(i=0 ;i<5; i++)
-		printf("\n%d\n", a[i]);
+	for(i=0 ;i<3000; i++)
+		printf("\n%d", a[i]);
 
 	double cpu[4];
 	recv(csid, cpu, sizeof(cpu), 0);
